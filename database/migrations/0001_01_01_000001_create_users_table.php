@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('profile_photo', 255);
             $table->text('professsional_description')->nullable();
             $table->string('address', 255)->nullable();
-            $table->string('account_status', 50);
+            $table->string('account_state', 50);
             $table->rememberToken();
 
             //RELACIONES
@@ -36,8 +36,8 @@ return new class extends Migration
 
 
         //Aplicar CHECK CONSTRAINT con SQL Nativo
-        DB::statement('ALTER TABLE users ADD CONSTRAINT chk_user_account_status
-        CHECK (account_status IN("ACTIVO", "INACTIVO", "SUSPENDIDO", "BLOQUEADO"))');
+        DB::statement('ALTER TABLE users ADD CONSTRAINT chk_user_account_state
+        CHECK (account_state IN("ACTIVO", "INACTIVO", "SUSPENDIDO", "BLOQUEADO"))');
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();
