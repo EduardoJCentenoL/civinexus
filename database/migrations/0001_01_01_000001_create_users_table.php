@@ -37,7 +37,7 @@ return new class extends Migration
 
         //Aplicar CHECK CONSTRAINT con SQL Nativo
         DB::statement('ALTER TABLE users ADD CONSTRAINT chk_user_account_status
-        CHECK (name IN("ACTIVO", "INACTIVO", "SUSPENDIDO", "BLOQUEADO"))');
+        CHECK (account_status IN("ACTIVO", "INACTIVO", "SUSPENDIDO", "BLOQUEADO"))');
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();
