@@ -22,7 +22,7 @@ return new class extends Migration
 
         //Aplicar CHECK CONSTRAINT con SQL Nativo
         DB::statement('ALTER TABLE state ADD CONSTRAINT chk_specialty_state
-        CHECK (status IN("PENDIENTE", "APROVADO", "RECHAZADO", "INACTIVO", "EXPIRADO", "SUSPENDIDO", "BLOQUEADO"))');
+        CHECK (state IN("PENDIENTE", "APROVADO", "RECHAZADO", "INACTIVO", "EXPIRADO", "SUSPENDIDO", "BLOQUEADO"))');
     }
 
     /**
