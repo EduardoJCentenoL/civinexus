@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('user_types', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name', 50);
-            $table->text('user_type_description');
+            $table->string('display_name', 50);
+            $table->text('details');
             $table->timestamps();
         });
     }
