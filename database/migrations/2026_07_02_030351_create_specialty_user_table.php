@@ -17,6 +17,13 @@ return new class extends Migration
             $table->smallInteger('years_experience')->unsigned()->default(0);
             $table->string('certification_number')->nullable();
             $table->string('state', 50)->default('PENDIENTE');//Si no le defino el size por defecto queda en 255(por si se me olvida)
+
+            //Relaciones
+            $table->foreignId('user_id')->constrained('users')
+            ->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('specialty_id')->constrained('specialties')
+            ->cascadeOnUpdate()->cascadeOnDelete();
+
             $table->timestamps();
         });
 
