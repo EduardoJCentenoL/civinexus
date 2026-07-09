@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('profile_views', function (Blueprint $table) {
+        Schema::create('variable_categories', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->date('visit_date');
-
-            //Relaciones
-            $table->foreignId('website_id')->constrained('websites')
-            ->cascadeOnUpdate()->cascadeOnDelete();
+            $table->string('display_name', 100);
+            $table->text('details');
             $table->timestamps();
         });
     }
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('profile_views');
+        Schema::dropIfExists('variable_categories');
     }
 };

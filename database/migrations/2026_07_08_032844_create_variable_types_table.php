@@ -12,7 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('variable_types', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->string('display_name', 150);
+            $table->text('details');
+            $table->string('measure_unit', 50);// ejemplo: m², m³, unidades, dias, entre otros
+
+            //Relaciones
+            $table->foreignId('variable_category_id')->constrained('variable_types')
+            ->cascadeOnUpdate()->cascadeOnDelete();
+
             $table->timestamps();
         });
     }
