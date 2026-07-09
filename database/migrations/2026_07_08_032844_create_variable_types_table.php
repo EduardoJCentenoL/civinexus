@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('measure_unit', 50);// ejemplo: m², m³, unidades, dias, entre otros
 
             //Relaciones
-            $table->foreignId('variable_category_id')->constrained('variable_types')
+            $table->foreignId('variable_category_id')->constrained('variable_categories')
             ->cascadeOnUpdate()->cascadeOnDelete();
 
             $table->timestamps();
