@@ -22,12 +22,14 @@ return new class extends Migration
             //Relaciones
             $table->foreignId('tenant_id')->constrained('users', 'id')
             ->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('currency_id')->constrained('currencies' )
+            ->cascadeOnUpdate()->cascadeOnDelete();
 
             $table->timestamps();
         });
 
-        DB::statement("ALTER TABLE payment_methods  ADD CONSTRAINT chk_payment_currency
-        CHECK (currency IN ('USD', 'NIO', 'EUR'))");
+        //? DB::statement("ALTER TABLE payment_methods  ADD CONSTRAINT chk_payment_currency
+        //? CHECK (currency IN ('USD', 'NIO', 'EUR'))");
     }
 
     /**
@@ -36,9 +38,9 @@ return new class extends Migration
     public function down(): void
     {
          //ELIMINACION DE RESTRICCION CHECK ANTES DE ELIMINAR LA TABLA
-        if (Schema::hasTable('payment_methods')) {
+        /*if (Schema::hasTable('payment_methods')) {
             DB::statement('ALTER TABLE payment_methods DROP CHECK chk_payment_currency');
-        }
+        }*/
 
         Schema::dropIfExists('payment_methods');
     }
