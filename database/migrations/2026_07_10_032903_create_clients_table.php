@@ -18,8 +18,9 @@ return new class extends Migration
             $table->string('email', 150)->unique();
             $table->string('phone_number', 50);
             $table->string('client_type', 50);
-            $table->string('address');
-            $table->
+
+            $table->foreignId('location_id')->nullable()->constrained('locations')
+            ->nullOnDelete()->nullOnUpdate();
             $table->timestamps();
         });
 

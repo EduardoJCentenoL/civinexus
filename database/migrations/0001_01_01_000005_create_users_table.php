@@ -23,13 +23,16 @@ return new class extends Migration
             $table->string('phone_number', 16);
             $table->string('profile_photo', 255);
             $table->text('professsional_description')->nullable();
-            $table->string('address', 255)->nullable();
+            // $table->string('address', 255)->nullable();
             $table->string('account_status', 50)->default('ACTIVO');
             $table->rememberToken();
 
-            //RELACIONES
+            //? RELACIONES
             $table->foreignId('user_type_id')->constrained('user_types')
             ->cascadeOnUpdate()->cascadeOnDelete();
+
+            $table->foreignId('location_id')->nullable()->constrained('locations')
+            ->nullOnDelete()->nullOnUpdate();
 
             $table->timestamps();
         });

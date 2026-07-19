@@ -15,8 +15,8 @@ return new class extends Migration
         Schema::create('quotes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('project_description');
-            $table->string('project_location_address');
-            $table->decimal('budget', 12, 2)->unsigned();
+            $table->string('project_location_address');//? Dirección exacta del proyecto.
+            $table->decimal('budget', 12, 2)->unsigned();//? Presuepuesto del cual dispone el cliente
             $table->string('quote_status', 50)->default('pending');
             $table->string('priority', 50)->default('regular');
             $table->date('application_date');
@@ -26,8 +26,8 @@ return new class extends Migration
             ->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('client_id')->constrained('clients')
             ->cascadeOnUpdate()->cascadeOnDelete();
-            $table->foreignId('location_id')->constrained('locations')
-            ->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('location_id')->nullable()->constrained('locations')
+            ->nullOnDelete()->nullOnUpdate();
 
             $table->timestamps();
         });
